@@ -8,6 +8,7 @@ let orderQuantity;
 let orderName;
 let orderTotal;
 let inputElement = document.getElementById("svarInput");
+let showText = document.getElementById("placeHolder").innerHTML
 
 function checkOrderName() {
     orderName = inputElement.value;
@@ -16,9 +17,9 @@ function checkOrderName() {
     if (orderName === vegetarian || orderName === hawaiian || orderName === pepperoni) { // Kollar igenom ifall orderName är en av pizzorna
         document.getElementById("btn1").style.display = "none"; // Tar bort "checkOrderName" btn
         document.getElementById("btn2").style.display = "inline"; // Lägger till "fulFillOrder" btn, så att andra function kan köras.
-        document.getElementById("placeHolder").innerHTML = "How many of " + orderName + " do you want?";
+        showText = "How many of " + orderName + " do you want?";
     } else {
-        document.getElementById("placeHolder").innerHTML = "You have misspelled the chosen pizza, retry. You can choose between Vegetarian Pizza, Hawaiian Pizza, and Pepperoni Pizza";
+        showText = "You have misspelled the chosen pizza, retry. You can choose between Vegetarian Pizza, Hawaiian Pizza, and Pepperoni Pizza";
     }
 }
 
@@ -27,7 +28,7 @@ function fulFillOrder() { // Räknar ut värdet + skriver ut resultatet.
     orderQuantity = parseInt(orderQuantity);
     orderTotal = orderQuantity * pizzaPrice;
 
-    document.getElementById("placeHolder").innerHTML = "Great, I'll get started on your " + orderName + " right away. It will cost " + orderTotal + "kr. " + calculateCookTime(orderQuantity);
+    showText = "Great, I'll get started on your " + orderName + " right away. It will cost " + orderTotal + "kr. " + calculateCookTime(orderQuantity);
 }
 
 function calculateCookTime(orderQuantity) {
